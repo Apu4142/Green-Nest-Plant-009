@@ -2,13 +2,14 @@ import { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import MyProfile from "./MyProfile";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { signIn,googleSignIn,user } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-
+  const [showPassword,setShowPassword] = useState(false)
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -33,8 +34,11 @@ const Login = () => {
      .catch(error =>{
        console.log(error)
      })
+  }
 
-     
+  const handleTogglePassWordShow = (e) =>{
+     e.preventDefault();
+     setShowPassword(!showPassword)
   }
 
   return (
@@ -69,17 +73,18 @@ const Login = () => {
           </div>
 
           {/* Password */}
-          <div>
+          <div className="relative">
             <label className="block text-sm font-semibold text-gray-600 mb-1">
               Password
             </label>
             <input
-              type="password"
+              type={showPassword? 'text' : 'password'}
               name="password"
               className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
               placeholder="••••••••"
               required
             />
+             <button onClick={handleTogglePassWordShow} className="absolute btn border-none bg-white btn-xs top-[34px] right-2">{showPassword? <FaEyeSlash /> : <FaEye />}</button>
           </div>
 
           <div className="flex justify-end">

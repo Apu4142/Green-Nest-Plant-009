@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
         <a className="flex items-center gap-1 text-xl font-serif">
           <span className="text-2xl">🌿</span>
-          <span className="text-gray-700">GreenNest</span>
+          <span className="text-sm md:text-2xl text-gray-700 font-bold ">GreenNest</span>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

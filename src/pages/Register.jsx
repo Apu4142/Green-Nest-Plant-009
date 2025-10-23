@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, setUser, updateUser } = useContext(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -54,6 +56,11 @@ const Register = () => {
       });
   };
 
+  const handleTogglePassWordShow = (e) =>{
+    e.preventDefault()
+     setShowPassword(!showPassword)
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen ">
      
@@ -78,7 +85,7 @@ const Register = () => {
               type="text"
               name="name"
               className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
-              placeholder="Your name"
+              // placeholder="Your name"
               required
             />
             {nameError && (
@@ -95,7 +102,7 @@ const Register = () => {
               type="text"
               name="photo"
               className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
-              placeholder="https://example.com/photo.jpg"
+              // placeholder="https://example.com/photo.jpg"
               required
             />
           </div>
@@ -109,23 +116,26 @@ const Register = () => {
               type="email"
               name="email"
               className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
-              placeholder="you@example.com"
+              // placeholder="you@example.com"
               required
             />
           </div>
 
           {/* Password */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
+          <div >
+            <div className="relative">
+                <label className="block text-sm font-semibold text-gray-600 mb-1">
               Password
             </label>
             <input
-              type="password"
+              type={ showPassword? 'text' : 'password'}
               name="password"
               className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
-              placeholder="••••••••"
+              // placeholder="••••••••"
               required
             />
+             <button onClick={handleTogglePassWordShow} className="absolute btn border-none bg-white btn-xs top-8 right-5">{showPassword? <FaEyeSlash /> : <FaEye />}</button>
+            </div>
             {passwordError && (
               <p className="text-red-500 text-xs mt-1">{passwordError}</p>
             )}
