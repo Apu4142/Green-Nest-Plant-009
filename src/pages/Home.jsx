@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import PlantsCard from "../components/plantsCard";
 
 const Home = () => {
@@ -17,8 +17,8 @@ const Home = () => {
             <PlantsCard key={plant.plantId} plant={plant} />
           ))}
         </div>
-         <div className="border flex justify-center items-center mt-6">
-             <NavLink to={"/plants"} className='btn bg-green-400 px-8 font-bold text-lg text-white'>All Plants</NavLink>
+         <div className=" flex justify-center items-center mt-6">
+             <Link to={"/plants"} className='btn bg-green-400 px-8 font-bold text-lg text-white'>All Plants</Link>
          </div>
       </div>
     </div>
