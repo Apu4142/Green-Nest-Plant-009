@@ -20,7 +20,7 @@
     "availableStock": 5,
     "careLevel": "Medium",
     "description": "A popular decorative plant with large, violin-shaped leaves.",
-    "image": "https://i.postimg.cc/example2.png",
+    "image": "https://i.ibb.co/HLCYmmQs/minimal-arrangement-natural-plant.jpg",
     "providerName": "LeafyHome"
   },
   {
@@ -32,7 +32,7 @@
     "availableStock": 12,
     "careLevel": "Easy",
     "description": "A beautiful indoor plant that blooms white flowers and cleans air.",
-    "image": "https://i.postimg.cc/example3.png",
+    "image": "https://i.ibb.co/842c79gB/close-up-delicate-flowers.jpg",
     "providerName": "UrbanGreen Studio"
   },
   {
@@ -44,7 +44,7 @@
     "availableStock": 20,
     "careLevel": "Easy",
     "description": "A succulent plant known for its healing gel and low maintenance.",
-    "image": "https://i.postimg.cc/example4.png",
+    "image": "https://i.ibb.co/mCpdWHDW/african-mask-plant-pot.jpg",
     "providerName": "Succulent World"
   },
   {
@@ -56,7 +56,7 @@
     "availableStock": 7,
     "careLevel": "Medium",
     "description": "A trendy indoor plant with large, split leaves.",
-    "image": "https://i.postimg.cc/example5.png",
+    "image": "https://i.ibb.co/b5KX5BB8/peace-lily-plant-pot.jpg",
     "providerName": "LeafyHome"
   },
   {
@@ -68,7 +68,7 @@
     "availableStock": 15,
     "careLevel": "Easy",
     "description": "A trailing plant that grows well in low light and purifies air.",
-    "image": "https://i.postimg.cc/example6.png",
+    "image": "https://i.ibb.co/HTR6TdZF/gardening-concept-with-plants.jpg",
     "providerName": "GreenSphere"
   },
   {
@@ -80,7 +80,7 @@
     "availableStock": 18,
     "careLevel": "Easy",
     "description": "A resilient plant that produces baby plants and improves air quality.",
-    "image": "https://i.postimg.cc/example7.png",
+    "image": "https://i.ibb.co/kVVQsHDy/view-green-palm-tree-species-with-beautiful-foliage.jpg",
     "providerName": "UrbanGreen Studio"
   },
   {
@@ -92,7 +92,7 @@
     "availableStock": 8,
     "careLevel": "Medium",
     "description": "A glossy-leaved indoor plant that adds elegance to any room.",
-    "image": "https://i.postimg.cc/example8.png",
+    "image": "https://i.ibb.co/NdwhfdNt/monstera-deliciosa-plant-pot.jpg",
     "providerName": "LeafyHome"
   },
   {
@@ -104,7 +104,7 @@
     "availableStock": 10,
     "careLevel": "Easy",
     "description": "A small succulent that symbolizes good luck and is easy to care for.",
-    "image": "https://i.postimg.cc/example9.png",
+    "image": "https://i.ibb.co/b5NMtH8Z/succulent-plant-terracotta-pot-home-decor-object.jpg",
     "providerName": "Succulent World"
   }
 ]

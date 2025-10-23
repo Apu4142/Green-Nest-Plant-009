@@ -10,7 +10,7 @@ const PlantsCard = ({ plant }) => {
          <img
         src={image}
         alt={plantName}
-        className="w-full h-48 "
+        className="w-full object-cover"
       />
         </div>
       <div className="p-4 space-y-2">
