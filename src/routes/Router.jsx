@@ -7,6 +7,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "../provider/PrivateRoute";
 import PlantsDetails from "../pages/PlantsDetails";
+import MyProfile from "../pages/MyProfile";
+import MyProfileLayouts from "../Layouts/MyProfileLayouts";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,16 @@ const router = createBrowserRouter([
       {
         path: "/auth/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/profile",
+    element: <MyProfileLayouts />,
+    children: [
+      {
+        path: "/profile/myProfile",
+        element: <MyProfile />,
       },
     ],
   },

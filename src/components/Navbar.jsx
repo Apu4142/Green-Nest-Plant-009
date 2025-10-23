@@ -67,9 +67,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex items-center gap-4">
         <div className="avatar">
-          <div className="w-10 rounded-full ring ring-green-200 ring-offset-2">
-           <img className="w-12 rounded-full" src={`${user? user.photoURL : userIcon}`} alt="" />
-          </div>
+          <NavLink to={"/profile/myProfile"} className="w-10 rounded-full ring ring-green-200 ring-offset-2">
+           <img className="w-14 h-11 rounded-full object-cover" src={`${user? user.photoURL : userIcon}`} alt="" />
+          </NavLink>
         </div>
         <div>
           {user ? (
