@@ -1,68 +1,156 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-    return (
-          <div className="flex justify-center items-center min-h-screen">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <h2 className="font-bold text-2xl text-center mt-12 border-b-2 pb-5 border-gray-200 mx-5">
-          Register your account
+  const { createUser, setUser, updateUser } = useContext(AuthContext);
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+  
+    if (name.length < 5) {
+      setNameError("Name should be at least 5 characters long");
+      return;
+    } else {
+      setNameError("");
+    }
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const isLengthValid = password.length >= 6;
+
+    if (!hasUppercase || !hasLowercase || !isLengthValid) {
+      let msg = "Password must include: ";
+      if (!hasUppercase) msg += "at least one uppercase letter, ";
+      if (!hasLowercase) msg += "at least one lowercase letter, ";
+      if (!isLengthValid) msg += "minimum 6 characters.";
+      setPasswordError(msg);
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+            navigate("/");
+          })
+          .catch(() => setUser(user));
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen ">
+     
+      <div className="absolute w-72 h-72 rounded-full blur-3xl opacity-40 top-10 left-10 animate-pulse"></div>
+      <div className="absolute w-72 h-72 rounded-full blur-3xl opacity-30 bottom-10 right-10 animate-pulse"></div>
+
+      <div className="relative z-10 w-full max-w-md p-8 bg-white/70 backdrop-blur-md rounded-2xl shadow-2xl border border-green-100 hover:shadow-green-200 transition duration-300">
+        <h2 className="text-3xl font-extrabold text-center text-green-700 mb-6">
+          Create Your Account 🌿
         </h2>
-        <form  className="card-body">
-          <fieldset className="fieldset">
-            {/* Name */}
-            <label className="label">Name</label>
+        <p className="text-center text-gray-500 mb-8">
+          Join the GreenNest community today
+        </p>
+
+        <form onSubmit={handleRegister} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
+              Full Name
+            </label>
             <input
+              type="text"
               name="name"
-              type="text"
-              className="input"
-              placeholder="Name"
+              className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
+              placeholder="Your name"
               required
             />
-           
-            {/*Photo photo */}
-            <label className="label">Photo photo</label>
+            {nameError && (
+              <p className="text-red-500 text-xs mt-1">{nameError}</p>
+            )}
+          </div>
+
+          {/* Photo URL */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
+              Photo URL
+            </label>
             <input
+              type="text"
               name="photo"
-              type="text"
-              className="input"
-              placeholder="Photo photo"
+              className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
+              placeholder="https://example.com/photo.jpg"
               required
             />
-            {/* email */}
-            <label className="label">Email</label>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
+              Email Address
+            </label>
             <input
-              name="email"
               type="email"
-              className="input"
-              placeholder="Email"
+              name="email"
+              className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
+              placeholder="you@example.com"
               required
             />
+          </div>
 
-            {/* password */}
-            <label className="label">Password</label>
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
+              Password
+            </label>
             <input
-              name="password"
               type="password"
-              className="input"
-              placeholder="Password"
+              name="password"
+              className="w-full input input-bordered rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-400 transition"
+              placeholder="••••••••"
               required
             />
+            {passwordError && (
+              <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+            )}
+          </div>
 
-            <button type="submit" className="btn btn-neutral mt-4">
-              Register
-            </button>
-            <p className="font-bold text-center pt-2">
-              Already Have An Account ?{" "}
-              <Link className="text-secondary" to={"/auth/login"}>
-                Login
-              </Link>
-            </p>
-          </fieldset>
+          <button
+            type="submit"
+            className="w-full py-3 mt-2 font-semibold text-white rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-md"
+          >
+            Register
+          </button>
+
+          <p className="text-sm text-center text-gray-600 mt-5">
+            Already have an account?{" "}
+            <Link
+              to="/auth/login"
+              className="text-green-600 font-semibold hover:underline"
+            >
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;
